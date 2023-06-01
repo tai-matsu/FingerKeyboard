@@ -18,6 +18,11 @@ public class KeyboardSwitcher : MonoBehaviour
         });
     }
 
+    private void OnDestroy()
+    {
+        inputMode.onValueChanged.RemoveAllListeners();   
+    }
+
     public void SwitchKeyboard()
     {
         Debug.Log("switch");
