@@ -5710,9 +5710,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50821d8c6dc16414b914e5cb252d8733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionWords:
-  - "\u304A\u3084\u3064"
-  - "\u3055\u304B\u306A"
 --- !u!4 &1598017695
 Transform:
   m_ObjectHideFlags: 0
@@ -6925,6 +6922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6604a60e796c94fb8e2bfad0469e84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputMode: {fileID: 661243381}
   isCsv: 0
   subjectName: 
 --- !u!4 &1889923289
@@ -7880,7 +7878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2079069348}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.7}
+  m_LocalPosition: {x: 0.2, y: 0.1, z: 0.7}
   m_LocalScale: {x: 0.0004, y: 0.0004, z: 1}
   m_Children:
   - {fileID: 1115024302}

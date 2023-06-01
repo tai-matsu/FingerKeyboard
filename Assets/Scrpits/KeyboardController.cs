@@ -33,7 +33,7 @@ public class KeyboardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        questionWords = questionWordsManager.questionWords;
+        questionWords = questionWordsManager.QuestionWords;
 
         // ëçì¸óÕêî
         var qWords = string.Join("", questionWords);

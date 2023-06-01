@@ -49,7 +49,7 @@ public class FingerKeyboardController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        questionWords = questionWordsManager.questionWords;
+        questionWords = questionWordsManager.QuestionWords;
 
         var qWords = string.Join("", questionWords);
         wordsLength = qWords.Length;
