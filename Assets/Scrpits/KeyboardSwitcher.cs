@@ -8,10 +8,21 @@ public class KeyboardSwitcher : MonoBehaviour
     [SerializeField] private GameObject fingerTools;
     [SerializeField] private GameObject keyboardTools;
     [SerializeField] private TMP_Dropdown inputMode;
+    [SerializeField] private ExperimentPreparation experimentPreparation;
 
 
     private void Start()
     {
+        if (experimentPreparation.isFinger)
+        {
+            inputMode.value = 0;
+        }
+        else
+        {
+            inputMode.value = 1;
+        }
+            SwitchKeyboard();
+
         inputMode.onValueChanged.AddListener(delegate
         {
             SwitchKeyboard();

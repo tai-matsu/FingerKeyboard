@@ -6923,8 +6923,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputMode: {fileID: 661243381}
-  isCsv: 0
-  subjectName: 
+  isCsv: 1
+  subjectName: Matsusaki
+  isFinger: 1
 --- !u!4 &1889923289
 Transform:
   m_ObjectHideFlags: 0
@@ -7900,6 +7901,7 @@ MonoBehaviour:
   fingerTools: {fileID: 751616823}
   keyboardTools: {fileID: 1588598187}
   inputMode: {fileID: 661243381}
+  experimentPreparation: {fileID: 1889923288}
 --- !u!1 &2080548267
 GameObject:
   m_ObjectHideFlags: 0
