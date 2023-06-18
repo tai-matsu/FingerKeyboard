@@ -17,3 +17,4 @@ https://github.com/tai-matsu/FingerKeyboard/assets/109422211/0a188af9-4c8e-4214-
 
 https://github.com/tai-matsu/FingerKeyboard/assets/109422211/b2c90789-40fa-4ea7-b66f-e936992cdb8e
 
+HoloLens2にて利用可能
