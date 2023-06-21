@@ -6,7 +6,11 @@
 
 - 右手と左手の組み合わせによって任意の文字入力を行う
 
-https://github.com/tai-matsu/FingerKeyboard/assets/109422211/0a188af9-4c8e-4214-a74c-8f515791d874
+
+https://github.com/tai-matsu/FingerKeyboard/assets/109422211/1a9ada9a-d556-474a-a6fb-ee7ed5848ace
+
+
+
 
 <br />
 
@@ -15,6 +19,10 @@ https://github.com/tai-matsu/FingerKeyboard/assets/109422211/0a188af9-4c8e-4214-
 
 
 
-https://github.com/tai-matsu/FingerKeyboard/assets/109422211/b2c90789-40fa-4ea7-b66f-e936992cdb8e
+
+https://github.com/tai-matsu/FingerKeyboard/assets/109422211/f85c1cc6-e253-4bcd-a1cd-ec85f22d4031
+
+
+
 
 HoloLens2にて利用可能
