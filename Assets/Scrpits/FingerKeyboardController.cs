@@ -7,11 +7,15 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using Microsoft.MixedReality.Toolkit.Utilities;
+using Microsoft.MixedReality.Toolkit.Utilities.Solvers;
 using Microsoft.MixedReality.Toolkit.Input;
 using Microsoft.MixedReality.Toolkit.UI;
 
 public class FingerKeyboardController : MonoBehaviour
 {
+
+    private const int charaNum = 92;
+
     private float touchThreshold;
     private float tipThreshold = 0.015f;
     private float knuckeleThreshold = 0.02f;
@@ -27,11 +31,13 @@ public class FingerKeyboardController : MonoBehaviour
     [SerializeField] private ExperimentPreparation experimentPreparation;
     [SerializeField] private TaskStart taskStart;
     [SerializeField] private QuestionWordsManager questionWordsManager;
+    [SerializeField] private HandConstraintPalmUp palmUp;
 
     private bool isInterval = false;
-    private bool[] isInputs = new bool[46];
+    private bool[] isInputs = new bool[charaNum];
     private bool isDelete = true;
     private bool isDecision = true;
+    private bool isPalmUp;
 
     private List<string> charaListA = new List<string>() { "あ", "い", "う", "え", "お" };
     private List<string> charaListK = new List<string>() { "か", "き", "く", "け", "こ" };
@@ -44,6 +50,17 @@ public class FingerKeyboardController : MonoBehaviour
     private List<string> charaListR = new List<string>() { "ら", "り", "る", "れ", "ろ" };
     private List<string> charaListW = new List<string>() { "わ", "を", "ん" };
 
+    private List<string> charaListA2 = new List<string>() { "ア", "イ", "ウ", "エ", "オ" };
+    private List<string> charaListK2 = new List<string>() { "カ", "キ", "ク", "ケ", "コ" };
+    private List<string> charaListS2 = new List<string>() { "サ", "シ", "ス", "セ", "ソ" };
+    private List<string> charaListT2 = new List<string>() { "タ", "チ", "ツ", "テ", "ト" };
+    private List<string> charaListN2 = new List<string>() { "ナ", "ニ", "ヌ", "ネ", "ノ" };
+    private List<string> charaListH2 = new List<string>() { "ハ", "ヒ", "フ", "ヘ", "ホ" };
+    private List<string> charaListM2 = new List<string>() { "マ", "ミ", "ム", "メ", "モ" };
+    private List<string> charaListY2 = new List<string>() { "ヤ", "ユ", "ヨ" };
+    private List<string> charaListR2 = new List<string>() { "ラ", "リ", "ル", "レ", "ロ" };
+    private List<string> charaListW2 = new List<string>() { "ワ", "ヲ", "ン" };
+
     private string[] questionWords;
 
     // Start is called before the first frame update
@@ -55,7 +72,7 @@ public class FingerKeyboardController : MonoBehaviour
         wordsLength = qWords.Length;
         Debug.Log($"wordslength:{wordsLength}");
 
-        for (int i = 0; i < 46; i++)
+        for (int i = 0; i < 92; i++)
         {
             isInputs[i] = false;
         }
@@ -184,59 +201,126 @@ public class FingerKeyboardController : MonoBehaviour
     }
 
 
+    public void PalmUpOn()
+    {
+        isPalmUp = true;
+    }
+    public void PalmUpOff()
+    {
+        isPalmUp = false;
+    }
+
     // 左手子音
     private void InputController()
     {
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Left, out MixedRealityPose leftPalm_a))
+        if (isPalmUp)
         {
-            touchThreshold = tipThreshold;
-            FiveInputCharacter(leftPalm_a, charaListA, 0);
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Left, out MixedRealityPose leftPalm_a))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_a, charaListA2, 0);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out MixedRealityPose leftPalm_k))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_k, charaListK2, 5);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Left, out MixedRealityPose leftPalm_s))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_s, charaListS2, 10);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Left, out MixedRealityPose leftPalm_t))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_t, charaListT2, 15);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Left, out MixedRealityPose leftPalm_n))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_n, charaListN2, 20);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbProximalJoint, Handedness.Left, out MixedRealityPose leftPalm_h))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_h, charaListH2, 25);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_m))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_m, charaListM2, 30);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_y))
+            {
+                touchThreshold = knuckeleThreshold;
+                ThreeInputCharacter(leftPalm_y, charaListY2, 35);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_r))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_r, charaListR2, 38);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_w))
+            {
+                touchThreshold = knuckeleThreshold;
+                ThreeInputCharacter(leftPalm_w, charaListW2, 43);
+            }
         }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out MixedRealityPose leftPalm_k))
+
+        else
         {
-            touchThreshold = tipThreshold;
-            FiveInputCharacter(leftPalm_k, charaListK, 5);
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Left, out MixedRealityPose leftPalm_a))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_a, charaListA, 0);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out MixedRealityPose leftPalm_k))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_k, charaListK, 5);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Left, out MixedRealityPose leftPalm_s))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_s, charaListS, 10);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Left, out MixedRealityPose leftPalm_t))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_t, charaListT, 15);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Left, out MixedRealityPose leftPalm_n))
+            {
+                touchThreshold = tipThreshold;
+                FiveInputCharacter(leftPalm_n, charaListN, 20);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbProximalJoint, Handedness.Left, out MixedRealityPose leftPalm_h))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_h, charaListH, 25);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_m))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_m, charaListM, 30);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_y))
+            {
+                touchThreshold = knuckeleThreshold;
+                ThreeInputCharacter(leftPalm_y, charaListY, 35);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_r))
+            {
+                touchThreshold = knuckeleThreshold;
+                FiveInputCharacter(leftPalm_r, charaListR, 38);
+            }
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_w))
+            {
+                touchThreshold = knuckeleThreshold;
+                ThreeInputCharacter(leftPalm_w, charaListW, 43);
+            }
         }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Left, out MixedRealityPose leftPalm_s))
-        {
-            touchThreshold = tipThreshold;
-            FiveInputCharacter(leftPalm_s, charaListS, 10);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Left, out MixedRealityPose leftPalm_t))
-        {
-            touchThreshold = tipThreshold;
-            FiveInputCharacter(leftPalm_t, charaListT, 15);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Left, out MixedRealityPose leftPalm_n))
-        {
-            touchThreshold = tipThreshold;
-            FiveInputCharacter(leftPalm_n, charaListN, 20);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbProximalJoint, Handedness.Left, out MixedRealityPose leftPalm_h))
-        {
-            touchThreshold = knuckeleThreshold;
-            FiveInputCharacter(leftPalm_h, charaListH, 25);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_m))
-        {
-            touchThreshold = knuckeleThreshold;
-            FiveInputCharacter(leftPalm_m, charaListM, 30);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_y))
-        {
-            touchThreshold = knuckeleThreshold;
-            ThreeInputCharacter(leftPalm_y, charaListY, 35);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_r))
-        {
-            touchThreshold = knuckeleThreshold;
-            FiveInputCharacter(leftPalm_r, charaListR, 38);
-        }
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyMiddleJoint, Handedness.Left, out MixedRealityPose leftPalm_w))
-        {
-            touchThreshold = knuckeleThreshold;
-            ThreeInputCharacter(leftPalm_w, charaListW, 43);
-        }
+        
     }
 
     // 右手母音
