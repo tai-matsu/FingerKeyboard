@@ -4357,7 +4357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1109041545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6325,6 +6325,7 @@ MonoBehaviour:
   experimentPreparation: {fileID: 1889923288}
   taskStart: {fileID: 428831260}
   questionWordsManager: {fileID: 1598017694}
+  isHandReverse: 1
 --- !u!4 &1696450212
 Transform:
   m_ObjectHideFlags: 0
@@ -6923,7 +6924,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputMode: {fileID: 661243381}
-  isCsv: 1
+  isCsv: 0
   subjectName: Matsusaki
   isFinger: 1
 --- !u!4 &1889923289
