@@ -12,7 +12,15 @@ public class ExperimentPreparation : MonoBehaviour
     [SerializeField] private string subjectName;
 
     public bool isFinger;
-    
+    public InputType currentInputType = InputType.rightVowel;
+
+    public enum InputType
+    {
+        leftVowel,
+        rightVowel,
+        leftRotation,
+        rightRotation
+    }
 
     public void CsvSave(int wordsLength, int errorCounter, double taskTime, string folder)
     {
