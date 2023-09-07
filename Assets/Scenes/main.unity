@@ -727,6 +727,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4841355736418051070, guid: 5e3cad580cd90004294499adc5e8bfcd, type: 3}
   m_PrefabInstance: {fileID: 179324259}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &173762543
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 173762545}
+  - component: {fileID: 173762544}
+  m_Layer: 0
+  m_Name: MoveCaluculator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &173762544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173762543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922d764d9701cd34d99ff72f4cc7185f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headMoveAmount: 0
+  fingerKeyboardController: {fileID: 1696450211}
+  KeyboardController: {fileID: 735828206}
+--- !u!4 &173762545
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173762543}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &179324259
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2695,6 +2741,7 @@ MonoBehaviour:
   experimentPreparation: {fileID: 1889923288}
   taskStart: {fileID: 428831260}
   questionWordsManager: {fileID: 1598017694}
+  moveCulculator: {fileID: 173762544}
 --- !u!1001 &738888664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4357,7 +4404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1109041545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4385,6 +4432,7 @@ MonoBehaviour:
   u: {fileID: 136143996}
   e: {fileID: 1710517557}
   o: {fileID: 1460540157}
+  experimentPreparation: {fileID: 1889923288}
 --- !u!4 &1109041546
 Transform:
   m_ObjectHideFlags: 0
@@ -6301,6 +6349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696450212}
   - component: {fileID: 1696450211}
+  - component: {fileID: 1696450213}
   m_Layer: 0
   m_Name: FingerKeyboardController
   m_TagString: Untagged
@@ -6325,7 +6374,8 @@ MonoBehaviour:
   experimentPreparation: {fileID: 1889923288}
   taskStart: {fileID: 428831260}
   questionWordsManager: {fileID: 1598017694}
-  isHandReverse: 1
+  touchSound: {fileID: 1696450213}
+  moveCulculator: {fileID: 173762544}
 --- !u!4 &1696450212
 Transform:
   m_ObjectHideFlags: 0
@@ -6340,6 +6390,102 @@ Transform:
   m_Father: {fileID: 751616824}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1696450213
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696450210}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 170429180f309a940b54c1001e94e54c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1705912938
 GameObject:
   m_ObjectHideFlags: 0
@@ -6924,9 +7070,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputMode: {fileID: 661243381}
-  isCsv: 0
+  isCsv: 1
   subjectName: Matsusaki
-  isFinger: 1
+  charaDisplay: {fileID: 1109041544}
+  isFinger: 0
+  currentInputType: 1
+  isTouchSound: 1
+  isCharaDisplay: 1
 --- !u!4 &1889923289
 Transform:
   m_ObjectHideFlags: 0
@@ -7547,6 +7697,18 @@ MonoBehaviour:
         - m_Target: {fileID: 428831260}
           m_TargetAssemblyTypeName: TaskStart, Assembly-CSharp
           m_MethodName: TaskTimeCountStart
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 173762544}
+          m_TargetAssemblyTypeName: MoveCulculator, Assembly-CSharp
+          m_MethodName: HeadMoveStart
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -12765,7 +12927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &8744313584201184444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14382,7 +14544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &8744313584577124160
 MeshRenderer:
   m_ObjectHideFlags: 0

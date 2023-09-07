@@ -18,6 +18,8 @@ public class KeyboardController : MonoBehaviour
     private double taskTime;
     private int errorCounter = 0;
     private int wordsLength;
+    private int inputTempNum = 0;
+    private bool isFinish = false;
 
     [SerializeField] private TextMeshProUGUI questionDisplay;
     [SerializeField] private Interactable startButton;
@@ -27,8 +29,14 @@ public class KeyboardController : MonoBehaviour
     [SerializeField] private ExperimentPreparation experimentPreparation;
     [SerializeField] private TaskStart taskStart;
     [SerializeField] private QuestionWordsManager questionWordsManager;
+    [SerializeField] private MoveCulculator moveCulculator;
 
     private string[] questionWords;
+
+    public bool IsFinish
+    {
+        get { return isFinish; }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +53,8 @@ public class KeyboardController : MonoBehaviour
         questionDisplay.text = questionWords[qNum];
         questionWords = questionWords.Where(x => x != questionWords[qNum]).ToArray();
 
-        deleteInput.OnClick.AddListener(OneCharaErase);
-        decisionInput.OnClick.AddListener(Decision);
+        // deleteInput.OnClick.AddListener(OneCharaErase);
+        // decisionInput.OnClick.AddListener(Decision);
 
     }
 
@@ -59,8 +67,53 @@ public class KeyboardController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             inputField.text = "";
+            inputTempNum = 0;
         }
 #endif
+
+        if(inputField.text != "finish")
+        {
+            if (inputField.text.Length > questionDisplay.text.Length)
+            {
+                inputField.text = inputField.text.Remove(inputField.text.Length - 1, inputField.text.Length - questionDisplay.text.Length);
+                errorCounter += inputField.text.Length - questionDisplay.text.Length;
+                inputTempNum = questionDisplay.text.Length;
+                Debug.Log($"error:{errorCounter}");
+
+                if (inputField.text.Length > 0)
+                {
+                    for (int i = 0; i < inputField.text.Length; i++)
+                    {
+                        if (inputField.text[inputField.text.Length - 1] != questionDisplay.text[inputField.text.Length - 1])
+                        {
+                            inputField.text = inputField.text.Remove(inputField.text.Length - 1, 1);
+                            errorCounter += 1;
+                            inputTempNum -= 1;
+                            Debug.Log($"error:{errorCounter}");
+                        }
+                    }
+                }
+            }
+
+            if (inputField.text.Length != inputTempNum)
+            {
+                inputTempNum += 1;
+
+                if (inputField.text.Length > 0)
+                {
+                    if (inputField.text[inputField.text.Length - 1] != questionDisplay.text[inputField.text.Length - 1])
+                    {
+                        inputField.text = inputField.text.Remove(inputField.text.Length - 1, 1);
+                        errorCounter += 1;
+                        inputTempNum -= 1;
+                        Debug.Log($"error:{errorCounter}");
+                    }
+                }
+
+            }
+
+            TrueJudgement();
+        }
 
     }
 
@@ -70,7 +123,7 @@ public class KeyboardController : MonoBehaviour
         decisionInput.OnClick.RemoveAllListeners();
     }
 
-
+/*
     public void OneCharaErase()
     {
         // 1ï∂éöè¡ãé
@@ -83,13 +136,16 @@ public class KeyboardController : MonoBehaviour
         errorCounter += 1;
         Debug.Log($"error:{errorCounter}");
     }
+*/
 
+/*
     public void Decision()
     {
         // åàíË        
         TrueJudgement();
         
     }
+*/
 
     // âÒìöîªíË
     private void TrueJudgement()
@@ -98,7 +154,7 @@ public class KeyboardController : MonoBehaviour
         {
             if (questionWords.Length == 0)
             {
-
+                isFinish = true;
                 inputField.text = "finish";
                 Debug.Log($"Finish:{DateTime.Now}");
                 taskTime = (DateTime.Now - taskStart.taskStartTime).TotalSeconds;
@@ -111,7 +167,7 @@ public class KeyboardController : MonoBehaviour
                 Debug.Log($"wps:{wps}");
                 Debug.Log($"errorlate:{errorRate}");
 
-                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, "KeyboardData");
+                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, "KeyboardData");
                 return;
             }
 

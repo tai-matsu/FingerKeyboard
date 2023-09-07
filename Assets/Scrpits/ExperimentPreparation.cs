@@ -10,19 +10,36 @@ public class ExperimentPreparation : MonoBehaviour
     [SerializeField] private TMP_Dropdown inputMode;
     [SerializeField] private bool isCsv;
     [SerializeField] private string subjectName;
+    [SerializeField] private GameObject charaDisplay;
 
     public bool isFinger;
     public InputType currentInputType = InputType.rightVowel;
+    public bool isTouchSound;
+    public bool isCharaDisplay;
 
     public enum InputType
     {
         leftVowel,
         rightVowel,
         leftRotation,
-        rightRotation
+        rightRotation,
+        upRotation,
+        downRotation
     }
 
-    public void CsvSave(int wordsLength, int errorCounter, double taskTime, string folder)
+    private void Start()
+    {
+        if (isCharaDisplay)
+        {
+            charaDisplay.SetActive(true);
+        }
+        else
+        {
+            charaDisplay.SetActive(false);
+        }
+    }
+
+    public void CsvSave(int wordsLength, int errorCounter, double taskTime, float headMove, string folder)
     {
         if (isCsv)
         {
@@ -34,7 +51,7 @@ public class ExperimentPreparation : MonoBehaviour
 
             double wps = 60.0d * ((wordsLength + errorCounter) / taskTime);
             double errorLate = 100.0d * errorCounter / (wordsLength + errorCounter);
-            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString() };
+            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString(), headMove.ToString() };
             string s2 = string.Join(",", s1);
             sw.WriteLine(s2);
             sw.Close();
