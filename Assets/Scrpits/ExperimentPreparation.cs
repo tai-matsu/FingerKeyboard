@@ -21,6 +21,7 @@ public class ExperimentPreparation : MonoBehaviour
     {
         leftVowel,
         rightVowel,
+        threeFinger,
         leftRotation,
         rightRotation,
         upRotation,
