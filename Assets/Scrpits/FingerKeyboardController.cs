@@ -26,6 +26,8 @@ public class FingerKeyboardController : MonoBehaviour
     private int errorCounter = 0;
     private int wordsLength;
     private int inputTempNum = 0;
+    private float wordRangeX = 0.5f;
+    private float wordRangeY = 0.2f;
 
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI questionDisplay;
@@ -238,6 +240,7 @@ public class FingerKeyboardController : MonoBehaviour
             inputTempNum = 0;
             inputField.text = "";
 
+            questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
             var qNum = UnityEngine.Random.Range(0, questionWords.Length);
             questionDisplay.text = questionWords[qNum];
             questionWords = questionWords.Where(x => x != questionWords[qNum]).ToArray();

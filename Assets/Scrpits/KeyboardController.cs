@@ -20,6 +20,8 @@ public class KeyboardController : MonoBehaviour
     private int wordsLength;
     private int inputTempNum = 0;
     private bool isFinish = false;
+    private float wordRangeX = 0.5f;
+    private float wordRangeY = 0.2f;
 
     [SerializeField] private TextMeshProUGUI questionDisplay;
     [SerializeField] private Interactable startButton;
@@ -173,6 +175,7 @@ public class KeyboardController : MonoBehaviour
 
             inputField.text = "";
 
+            questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
             var qNum = UnityEngine.Random.Range(0, questionWords.Length);
             questionDisplay.text = questionWords[qNum];
             questionWords = questionWords.Where(x => x != questionWords[qNum]).ToArray();
