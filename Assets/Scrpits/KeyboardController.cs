@@ -182,5 +182,17 @@ public class KeyboardController : MonoBehaviour
         }
     }
 
+
+
+
+
+
+
+
+    public void FirstQuesMove()
+    {
+        questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
+    }
+
 }
 

@@ -438,17 +438,17 @@ public class FingerKeyboardController : MonoBehaviour
                     touchThreshold = tipThreshold;
                     FiveInputCharacter(threePalm_s, charaListS, 10);
                 }
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbDistalJoint, Handedness.Right, out MixedRealityPose threePalm_t))
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Right, out MixedRealityPose threePalm_t))
                 {
                     touchThreshold = tipThreshold;
                     FiveInputCharacter(threePalm_t, charaListT, 15);
                 }
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexDistalJoint, Handedness.Right, out MixedRealityPose threePalm_n))
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Right, out MixedRealityPose threePalm_n))
                 {
                     touchThreshold = tipThreshold;
                     FiveInputCharacter(threePalm_n, charaListN, 20);
                 }
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleDistalJoint, Handedness.Right, out MixedRealityPose threePalm_h))
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbProximalJoint, Handedness.Right, out MixedRealityPose threePalm_h))
                 {
                     touchThreshold = knuckeleThreshold;
                     FiveInputCharacter(threePalm_h, charaListH, 25);
@@ -463,12 +463,12 @@ public class FingerKeyboardController : MonoBehaviour
                     touchThreshold = knuckeleThreshold;
                     ThreeInputCharacter(threePalm_y, charaListY, 35);
                 }
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexKnuckle, Handedness.Right, out MixedRealityPose threePalm_r))
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingMiddleJoint, Handedness.Right, out MixedRealityPose threePalm_r))
                 {
                     touchThreshold = knuckeleThreshold;
                     FiveInputCharacter(threePalm_r, charaListR, 38);
                 }
-                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleKnuckle, Handedness.Right, out MixedRealityPose threePalm_w))
+                if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyMiddleJoint, Handedness.Right, out MixedRealityPose threePalm_w))
                 {
                     touchThreshold = knuckeleThreshold;
                     ThreeInputCharacter(threePalm_w, charaListW, 43);
@@ -835,5 +835,9 @@ public class FingerKeyboardController : MonoBehaviour
     private float HandPointDistance(MixedRealityPose right, MixedRealityPose left)
     {
         return Vector3.Distance(right.Position, left.Position);
+    }
+    public void FirstQuesMove()
+    {
+        questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
     }
 }
