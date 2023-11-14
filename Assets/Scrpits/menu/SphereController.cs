@@ -25,7 +25,7 @@ public class SphereController : MonoBehaviour
             {
                 var vec = tipPose.Position - distalPose.Position;
 
-                sphere.transform.position = vec;
+                sphere.transform.position = tipPose.Position + 10 * vec;
             }
 
         }

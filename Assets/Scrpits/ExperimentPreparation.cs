@@ -39,7 +39,7 @@ public class ExperimentPreparation : MonoBehaviour
         }
     }
 
-    public void CsvSave(int wordsLength, int errorCounter, double taskTime, float headMove, string folder)
+    public void CsvSave(int wordsLength, int errorCounter, double taskTime, float headMove, float rHandMove, float lHandMove, string folder)
     {
         if (isCsv)
         {
@@ -51,7 +51,7 @@ public class ExperimentPreparation : MonoBehaviour
 
             double wps = 60.0d * ((wordsLength + errorCounter) / taskTime);
             double errorLate = 100.0d * errorCounter / (wordsLength + errorCounter);
-            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString(), headMove.ToString() };
+            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString(), headMove.ToString(), rHandMove.ToString(), lHandMove.ToString() };
             string s2 = string.Join(",", s1);
             sw.WriteLine(s2);
             sw.Close();

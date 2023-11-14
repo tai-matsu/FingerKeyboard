@@ -167,7 +167,7 @@ public class KeyboardController : MonoBehaviour
                 Debug.Log($"wps:{wps}");
                 Debug.Log($"errorlate:{errorRate}");
 
-                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, "KeyboardData");
+                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, moveCulculator.rHandMoveAmount, moveCulculator.lHandMoveAmount, "KeyboardData");
                 return;
             }
 

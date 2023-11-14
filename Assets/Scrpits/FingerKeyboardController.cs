@@ -230,7 +230,7 @@ public class FingerKeyboardController : MonoBehaviour
                 Debug.Log($"wps:{wps}");
                 Debug.Log($"errorlate:{errorLate}");
 
-                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, "FingerData");
+                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, moveCulculator.rHandMoveAmount, moveCulculator.lHandMoveAmount, "FingerData");
 
                 return;
             }
