@@ -2240,6 +2240,8 @@ GameObject:
   - component: {fileID: 684790169}
   - component: {fileID: 684790168}
   - component: {fileID: 684790167}
+  - component: {fileID: 684790171}
+  - component: {fileID: 684790170}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -2403,6 +2405,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684790165}
   m_CullTransparentMesh: 1
+--- !u!114 &684790170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684790165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4684083f6dff4a1d8a790bccc354fcf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateLinkedTransform: 0
+  moveLerpTime: 0
+  rotateLerpTime: 0
+  scaleLerpTime: 0
+  maintainScaleOnInitialization: 0
+  smoothing: 1
+  lifetime: 0
+  referenceDirection: 1
+  minDistance: 0
+  maxDistance: 0
+  minViewDegrees: 0
+  maxViewDegrees: 0
+  aspectV: 1
+  ignoreAngleClamp: 0
+  ignoreDistanceClamp: 0
+  useFixedVerticalPosition: 0
+  fixedVerticalPosition: -0.4
+  orientToReferenceDirection: 0
+--- !u!114 &684790171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684790165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b55691ad5b034fe6966763a6e23818d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedTargetType: 0
+  trackedHandedness: 3
+  trackedHandJoint: 2
+  transformOverride: {fileID: 0}
+  additionalOffset: {x: 0, y: 0.1, z: 0.4}
+  additionalRotation: {x: 0, y: 0, z: 0}
+  updateSolvers: 1
 --- !u!1001 &692809030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5714,7 +5765,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1588598188
 Transform:
   m_ObjectHideFlags: 0
@@ -7073,12 +7124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputMode: {fileID: 661243381}
   isCsv: 1
-  subjectName: Matsusaki
+  subjectName: kotaki
   charaDisplay: {fileID: 1109041544}
   isFinger: 0
   currentInputType: 1
   isTouchSound: 1
-  isCharaDisplay: 1
+  isCharaDisplay: 0
 --- !u!4 &1889923289
 Transform:
   m_ObjectHideFlags: 0
@@ -7732,6 +7783,30 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1696450211}
+          m_TargetAssemblyTypeName: FingerKeyboardController, Assembly-CSharp
+          m_MethodName: FirstQuesMove
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 735828206}
+          m_TargetAssemblyTypeName: KeyboardController, Assembly-CSharp
+          m_MethodName: FirstQuesMove
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     ClassName: InteractableOnTouchReceiver
     AssemblyQualifiedName: Microsoft.MixedReality.Toolkit.UI.InteractableOnTouchReceiver,
       Microsoft.MixedReality.Toolkit.SDK, Version=2.8.3.0, Culture=neutral, PublicKeyToken=null
@@ -8047,7 +8122,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2079069349
 Transform:
   m_ObjectHideFlags: 0
