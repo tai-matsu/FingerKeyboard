@@ -36,6 +36,7 @@ public class FingerKeyboardController : MonoBehaviour
     [SerializeField] private QuestionWordsManager questionWordsManager;
     [SerializeField] private AudioSource touchSound;
     [SerializeField] private MoveCulculator moveCulculator;
+    [SerializeField] private SpeechToText speechToText;
 
     private bool isInterval = false;
     private bool[] isInputs = new bool[charaNum];
@@ -148,6 +149,7 @@ public class FingerKeyboardController : MonoBehaviour
         if (!isInterval)
         {
             InputController();
+            speechToText.SynthesizeAudioAsync();
         }
         
 

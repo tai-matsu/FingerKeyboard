@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2794,7 +2794,7 @@ MonoBehaviour:
   experimentPreparation: {fileID: 1889923288}
   taskStart: {fileID: 428831260}
   questionWordsManager: {fileID: 1598017694}
-  moveCulculator: {fileID: 173762544}
+  moveCulculator: {fileID: 0}
 --- !u!1001 &738888664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4335,6 +4335,52 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &987769050
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 987769052}
+  - component: {fileID: 987769051}
+  m_Layer: 0
+  m_Name: SpeechToText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &987769051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987769050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11cfb0494bb91944a7c9e9b60c7fd67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subscriptionKey: 785a78d14c594dee93603ea9d6e3e69f
+  region: japaneast
+  inputField: {fileID: 684790167}
+--- !u!4 &987769052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987769050}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013627835
 GameObject:
   m_ObjectHideFlags: 0
@@ -4485,7 +4531,7 @@ MonoBehaviour:
   u: {fileID: 136143996}
   e: {fileID: 1710517557}
   o: {fileID: 1460540157}
-  experimentPreparation: {fileID: 1889923288}
+  experimentPreparation: {fileID: 0}
 --- !u!4 &1109041546
 Transform:
   m_ObjectHideFlags: 0
@@ -5765,7 +5811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1588598188
 Transform:
   m_ObjectHideFlags: 0
@@ -6427,8 +6473,9 @@ MonoBehaviour:
   experimentPreparation: {fileID: 1889923288}
   taskStart: {fileID: 428831260}
   questionWordsManager: {fileID: 1598017694}
-  touchSound: {fileID: 1696450213}
-  moveCulculator: {fileID: 173762544}
+  touchSound: {fileID: 0}
+  moveCulculator: {fileID: 0}
+  speechToText: {fileID: 987769051}
 --- !u!4 &1696450212
 Transform:
   m_ObjectHideFlags: 0
@@ -7123,12 +7170,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputMode: {fileID: 661243381}
-  isCsv: 1
-  subjectName: kotaki
-  charaDisplay: {fileID: 1109041544}
-  isFinger: 0
+  isCsv: 0
+  subjectName: 
+  charaDisplay: {fileID: 1978743336}
+  isFinger: 1
   currentInputType: 1
-  isTouchSound: 1
+  isTouchSound: 0
   isCharaDisplay: 0
 --- !u!4 &1889923289
 Transform:

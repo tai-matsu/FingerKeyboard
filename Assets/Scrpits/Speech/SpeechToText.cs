@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Microsoft.CognitiveServices.Speech;
 using System;
+using TMPro;
 
 public class SpeechToText : MonoBehaviour
 {
 
     [SerializeField] private string subscriptionKey;
     [SerializeField] private string region;
-    [SerializeField] private string speakText;
+    [SerializeField] private TMP_InputField inputField;
 
     private SpeechConfig config;
     private string speechSynthesisLanguage = "ja-JP";
@@ -29,6 +30,7 @@ public class SpeechToText : MonoBehaviour
         try
         {
             using var synthesizer = new SpeechSynthesizer(config, null);
+            var speakText = inputField.text[inputField.text.Length - 1].ToString();
             var result = await synthesizer.SpeakTextAsync(speakText);
 
             var audioSource = gameObject.AddComponent<AudioSource>();
