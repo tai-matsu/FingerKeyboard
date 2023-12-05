@@ -40,19 +40,19 @@ public class ExperimentPreparation : MonoBehaviour
         }
     }
 
-    public void CsvSave(int wordsLength, int errorCounter, double taskTime, float headMove, float rHandMove, float lHandMove, string folder)
+    public void CsvSave(int wordsLength, int errorCounter, double taskTime, string folder)
     {
         if (isCsv)
         {
             var fileName = DateTime.Now.ToString("MM_dd_HH_mm_ss");
             var inputName = inputMode.GetComponentInChildren<TMPro.TextMeshProUGUI>().text;
-            var sw = new StreamWriter(@$"D:\Matsusaki\FingerKeyboardData\{folder}\Task\{fileName}_{inputName}_{subjectName}.csv", false);
+            using var sw = new StreamWriter(@$"D:\Matsusaki\FingerKeyboardData\{folder}\Task\{fileName}_{inputName}_{subjectName}.csv", false);
 
             // var sw = new StreamWriter(@$"D:\Matsusaki\FingerKeyboardData\FingerData\Task\{fileName}.csv", false);
 
             double wps = 60.0d * ((wordsLength + errorCounter) / taskTime);
             double errorLate = 100.0d * errorCounter / (wordsLength + errorCounter);
-            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString(), headMove.ToString(), rHandMove.ToString(), lHandMove.ToString() };
+            string[] s1 = { taskTime.ToString(), errorCounter.ToString(), wps.ToString(), errorLate.ToString() };
             string s2 = string.Join(",", s1);
             sw.WriteLine(s2);
             sw.Close();

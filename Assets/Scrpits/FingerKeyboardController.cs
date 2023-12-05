@@ -28,6 +28,7 @@ public class FingerKeyboardController : MonoBehaviour
     private int inputTempNum = 0;
     private float wordRangeX = 0.5f;
     private float wordRangeY = 0.2f;
+    private char currentChara;
 
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI questionDisplay;
@@ -35,7 +36,6 @@ public class FingerKeyboardController : MonoBehaviour
     [SerializeField] private TaskStart taskStart;
     [SerializeField] private QuestionWordsManager questionWordsManager;
     [SerializeField] private AudioSource touchSound;
-    [SerializeField] private MoveCulculator moveCulculator;
     [SerializeField] private SpeechToText speechToText;
 
     private bool isInterval = false;
@@ -98,6 +98,28 @@ public class FingerKeyboardController : MonoBehaviour
         }
 #endif
 
+        if (!isInterval)
+        {
+            InputController();
+
+            if(inputField.text.Length != 0)
+            {
+                if (inputField.text[inputField.text.Length - 1] != currentChara)
+                {
+                    isSpeak = true;
+                }
+
+                if (isSpeak && inputField.text != "finish")
+                {
+                    speechToText.SynthesizeAudioAsync();
+                    currentChara = inputField.text[inputField.text.Length - 1];
+                    isSpeak = false;
+                }
+            }
+            
+
+        }
+
         // OneCharaErase();
         if (inputField.text != "finish")
         {
@@ -145,12 +167,6 @@ public class FingerKeyboardController : MonoBehaviour
 
 
         var temp = inputField.text;
-
-        if (!isInterval)
-        {
-            InputController();
-            speechToText.SynthesizeAudioAsync();
-        }
         
 
         if (inputField.text != temp)
@@ -234,7 +250,7 @@ public class FingerKeyboardController : MonoBehaviour
                 Debug.Log($"wps:{wps}");
                 Debug.Log($"errorlate:{errorLate}");
 
-                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, moveCulculator.headMoveAmount, moveCulculator.rHandMoveAmount, moveCulculator.lHandMoveAmount, "FingerData");
+                experimentPreparation.CsvSave(wordsLength, errorCounter, taskTime, "FingerData");
 
                 return;
             }
@@ -242,7 +258,7 @@ public class FingerKeyboardController : MonoBehaviour
             inputTempNum = 0;
             inputField.text = "";
 
-            questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
+            // questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
             var qNum = UnityEngine.Random.Range(0, questionWords.Length);
             questionDisplay.text = questionWords[qNum];
             questionWords = questionWords.Where(x => x != questionWords[qNum]).ToArray();
@@ -840,6 +856,6 @@ public class FingerKeyboardController : MonoBehaviour
     }
     public void FirstQuesMove()
     {
-        questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
+        // questionDisplay.transform.position = new Vector3(UnityEngine.Random.Range(-wordRangeX, wordRangeX), UnityEngine.Random.Range(-wordRangeY, wordRangeY), questionDisplay.transform.position.z);
     }
 }
