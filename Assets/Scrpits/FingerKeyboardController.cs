@@ -43,6 +43,7 @@ public class FingerKeyboardController : MonoBehaviour
     private bool isDelete = true;
     private bool isDecision = true;
     private bool isFinish = false;
+    private bool isSpeak = true;
     
 
     private List<string> charaListA = new List<string>() { "‚ ", "‚¢", "‚¤", "‚¦", "‚¨" };
