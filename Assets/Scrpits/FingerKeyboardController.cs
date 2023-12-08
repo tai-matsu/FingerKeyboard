@@ -37,6 +37,7 @@ public class FingerKeyboardController : MonoBehaviour
     [SerializeField] private QuestionWordsManager questionWordsManager;
     [SerializeField] private AudioSource touchSound;
     [SerializeField] private SpeechToText speechToText;
+    [SerializeField] private SpeechToText speechToText_Ques;
 
     private bool isInterval = false;
     private bool[] isInputs = new bool[charaNum];
@@ -121,7 +122,7 @@ public class FingerKeyboardController : MonoBehaviour
 
         }
 
-        // OneCharaErase();
+        OneCharaErase();
         if (inputField.text != "finish")
         {
             if (inputField.text.Length > questionDisplay.text.Length)
@@ -263,6 +264,7 @@ public class FingerKeyboardController : MonoBehaviour
             var qNum = UnityEngine.Random.Range(0, questionWords.Length);
             questionDisplay.text = questionWords[qNum];
             questionWords = questionWords.Where(x => x != questionWords[qNum]).ToArray();
+            speechToText_Ques.SynthesizeAudioAsync();
         }
     }
 
